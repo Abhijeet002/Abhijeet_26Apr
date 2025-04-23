@@ -9,9 +9,16 @@ venv/
 # Environment variables
 .env
 
+
+# Ignore all CSVs inside data
+data/
+*.csv
+
 # VSCode
 .vscode/
 
 # MacOS / Windows / Linux system files
 .DS_Store
 Thumbs.db
+
+
