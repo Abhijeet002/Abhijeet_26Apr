@@ -1,5 +1,3 @@
-# app/data_processing.py
-
 import os
 import uuid
 import pandas as pd
@@ -9,7 +7,7 @@ import pytz
 
 from app import models
 
-# Ensure the reports folder exists
+# To Ensure if the reports folder exists
 os.makedirs("reports", exist_ok=True)
 
 
@@ -68,11 +66,11 @@ def generate_report(db: Session) -> str:
         store_data = store_status_df[store_status_df['store_id'] == store_id]
         store_data = store_data.sort_values('timestamp_utc')
 
-        # Get timezone
+        # Getting timezone
         tz_row = timezone_df[timezone_df['store_id'] == str(store_id)]
         timezone_str = tz_row['timezone_str'].iloc[0] if not tz_row.empty else 'America/Chicago'
 
-        # Get business hours
+        # Getting business hours
         bh_df = business_hours_df[business_hours_df['store_id'] == store_id]
         business_ranges = get_local_business_hours(bh_df, timezone_str)
 
@@ -117,7 +115,7 @@ def generate_report(db: Session) -> str:
 
     report_df = pd.DataFrame(report_rows)
 
-    # Save report
+    # Saving report
     report_id = str(uuid.uuid4())[:8]
     file_path = f"reports/report_{report_id}.csv"
     report_df.to_csv(file_path, index=False)
