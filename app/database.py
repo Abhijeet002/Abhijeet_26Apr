@@ -7,11 +7,10 @@ import os
 
 load_dotenv()
 
-# Get credentials from environment or replace directly for local use
 USER = os.getenv("DB_USER", "your_db_user")
 PASSWORD = os.getenv("DB_PASSWORD", "your_db_password")
 HOST = os.getenv("DB_HOST", "localhost")
-PORT = 5433  # Make sure this matches your PostgreSQL port
+PORT = 5433  
 NAME = os.getenv("DB_NAME", "your_db_name")
 
 # SQLAlchemy database URL
@@ -21,10 +20,10 @@ DB_URL = f"postgresql+psycopg2://{USER}:{PASSWORD}@{HOST}:{PORT}/{NAME}"
 engine = create_engine(
     DB_URL,
     pool_recycle=3600,
-    echo=True  # Set to False in production
+    echo=True 
 )
 
-# Create a configured session class
+# Creating a configured session class
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Base class for declarative models
