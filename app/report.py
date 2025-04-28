@@ -105,7 +105,7 @@ def generate_and_save_report(report_id: str):
         if not tracker:
             return
 
-        store_ids = [r[0] for r in db.execute("SELECT DISTINCT store_id FROM store_status").fetchall()]
+        store_ids = [r[0] for r in db.execute(text("SELECT DISTINCT store_id FROM store_status")).fetchall()]
         rows = []
         for sid in store_ids:
             rep = generate_report_for_store(sid, db)
@@ -134,7 +134,7 @@ def generate_and_save_report(report_id: str):
     except Exception:
         db.rollback()
         if tracker:
-            tracker.status = ReportStatusEnum.complete
+            tracker.status = ReportStatusEnum.failed
             tracker.file_path = None
             db.commit()
     finally:
