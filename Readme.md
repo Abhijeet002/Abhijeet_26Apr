@@ -54,8 +54,8 @@ HTTP 408 Request Timeout.
 # Setup Instructions
 ### 1. Clone the repo:
 ```bash
-git clone https://your-repo-link.git
-cd your-repo
+git clone https://github.com/Abhijeet002/Abhijeet_26Apr.git
+cd Abhijeet_26Apr
 ```
 
 
